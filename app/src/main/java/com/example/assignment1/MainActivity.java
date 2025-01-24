@@ -16,14 +16,14 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    Faculty faculty;
+    com.example.assignment1.Faculty faculty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        faculty = new Faculty();
+        faculty = new com.example.assignment1.Faculty();
 
         // Fill the designation spinner
         FillDesignation();
