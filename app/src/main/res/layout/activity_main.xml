@@ -4,14 +4,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Faculty Name -->
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Faculty Name" />
 
-    <!-- Designation Header -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,14 +18,12 @@
         android:textStyle="bold"
         android:layout_marginTop="16dp" />
 
-    <!-- Designation Dropdown -->
     <Spinner
         android:id="@+id/spinnerDesignation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp" />
 
-    <!-- Gender Radio Buttons -->
     <RadioGroup
         android:id="@+id/rbGroupGender"
         android:layout_width="match_parent"
@@ -47,7 +43,6 @@
             android:text="Female" />
     </RadioGroup>
 
-    <!-- Date of Joining -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +60,6 @@
             android:clickable="true"
             android:onClick="ShowDatePicker" />
 
-        <!-- Calendar Icon -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +69,6 @@
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
-    <!-- Submit Button -->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

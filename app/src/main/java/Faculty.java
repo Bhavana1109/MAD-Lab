@@ -8,7 +8,6 @@ public class Faculty implements Serializable {
     private String Gender;
     private String DateOfJoining;
 
-    // Getter and setter methods
     public String getName() {
         return Name;
     }

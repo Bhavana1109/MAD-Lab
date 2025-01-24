@@ -17,22 +17,26 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Faculty faculty = (Faculty) getIntent().getSerializableExtra("faculty");
+        com.example.assignment1.Faculty faculty = (com.example.assignment1.Faculty) getIntent().getSerializableExtra("faculty");
 
         TextView textViewDetails = findViewById(R.id.textViewDetails);
 
-        int experience = CalculateExperience(faculty.getDateOfJoining());
+        String experience = CalculateExperience(faculty.getDateOfJoining());
 
         String details = "Faculty: " + faculty.getName() + "\n" +
                 "Designation: " + faculty.getDesignation() + "\n" +
                 "Gender: " + faculty.getGender() + "\n" +
                 "Date of Joining: " + faculty.getDateOfJoining() + "\n" +
-                "Experience: " + experience + " years";
+                "Experience: " + experience;
 
         textViewDetails.setText(details);
     }
 
-    private int CalculateExperience(String dateOfJoining) {
+    private String CalculateExperience(String dateOfJoining) {
+        if (dateOfJoining == null || dateOfJoining.isEmpty()) {
+            return "0 years, 0 months";
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             Date joiningDate = sdf.parse(dateOfJoining);
@@ -43,14 +47,28 @@ public class SecondActivity extends AppCompatActivity {
 
             int years = today.get(Calendar.YEAR) - joiningCalendar.get(Calendar.YEAR);
 
-            if (today.get(Calendar.DAY_OF_YEAR) < joiningCalendar.get(Calendar.DAY_OF_YEAR)) {
+            if (today.get(Calendar.MONTH) < joiningCalendar.get(Calendar.MONTH) ||
+                    (today.get(Calendar.MONTH) == joiningCalendar.get(Calendar.MONTH) &&
+                            today.get(Calendar.DAY_OF_MONTH) < joiningCalendar.get(Calendar.DAY_OF_MONTH))) {
                 years--;
             }
 
-            return years;
+            int months = today.get(Calendar.MONTH) - joiningCalendar.get(Calendar.MONTH);
+            if (months < 0) {
+                months += 12;
+            }
+
+            if (today.get(Calendar.DAY_OF_MONTH) < joiningCalendar.get(Calendar.DAY_OF_MONTH)) {
+                months--;
+                if (months < 0) {
+                    months = 11;
+                }
+            }
+
+            return years + " years, " + months + " months";
         } catch (ParseException e) {
             e.printStackTrace();
-            return 0;
+            return "Invalid Date";
         }
     }
 }

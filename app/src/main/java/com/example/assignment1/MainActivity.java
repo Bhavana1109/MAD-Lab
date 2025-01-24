@@ -16,30 +16,26 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    Faculty faculty;
+    com.example.assignment1.Faculty faculty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        faculty = new Faculty();
+        faculty = new com.example.assignment1.Faculty();
 
-        // Fill the designation spinner
         FillDesignation();
     }
 
     public void SaveData(View view) {
-        // Get name and date of joining from user input
         EditText editTextName = findViewById(R.id.editTextName);
         EditText editTextDOJ = findViewById(R.id.editTextDOJ);
 
-        // Set values to the faculty object
         faculty.setName(editTextName.getText().toString());
         faculty.setGender(GetGender());
         faculty.setDateOfJoining(editTextDOJ.getText().toString());
 
-        // Pass the faculty object to the second activity
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         intent.putExtra("faculty", faculty);
         startActivity(intent);
@@ -93,10 +89,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        monthOfYear++; // Adjust for zero-indexed months
+        monthOfYear++;
         faculty.setDateOfJoining(dayOfMonth + "-" + monthOfYear + "-" + year);
 
-        // Update the UI with the selected date
         EditText editTextDOJ = findViewById(R.id.editTextDOJ);
         editTextDOJ.setText(faculty.getDateOfJoining());
     }
